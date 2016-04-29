@@ -1,0 +1,22 @@
+group 'hansong'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile (
+            'javax:javaee-api:7.0',
+            'redis.clients:jedis:2.8.0',
+            "ch.qos.logback:logback-classic:1.0.13",
+            'com.fasterxml.jackson.core:jackson-core:2.7.3',
+            'com.fasterxml.jackson.core:jackson-databind:2.7.3',
+            'commons-lang:commons-lang:2.3'
+    )
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}

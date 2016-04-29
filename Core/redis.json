@@ -1,0 +1,19 @@
+{
+  "cluster":"false",
+
+  "connectionConfig": {
+    "maxTotal": "10",
+    "maxIdle": "10",
+    "maxWait": "10000",
+    "timeout": "10000"
+  },
+
+  "redisServers":[
+    {
+      "ip":"112.74.215.22",
+      "port":"63679",
+      "password":"a12shg"
+    }
+  ]
+
+}

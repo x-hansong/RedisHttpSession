@@ -1,0 +1,6 @@
+group 'hansong'
+version '1.0-SNAPSHOT'
+
+subprojects {
+
+}
