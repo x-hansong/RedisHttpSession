@@ -36,7 +36,12 @@ public class SingleRedisConnection implements RedisConnection {
 
     @Override
     public Object hget(String key, String field) {
-        return SerializationUtils.deserialize(jedis.hget(key.getBytes(), field.getBytes()));
+        byte[] bytes = jedis.hget(key.getBytes(), field.getBytes());
+        if (bytes == null){
+            return null;
+        } else {
+            return SerializationUtils.deserialize(bytes);
+        }
     }
 
     @Override

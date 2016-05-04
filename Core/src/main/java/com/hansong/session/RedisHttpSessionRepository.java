@@ -35,10 +35,20 @@ public class RedisHttpSessionRepository {
         return (HttpSession) new RedisHttpSessionProxy().bind(redisHttpSession);
     }
 
+    /**
+     * get session according to token
+     * @param token
+     * @param servletContext
+     * @return session associate to token or null if the token is invalid
+     */
     public HttpSession getSession(String token, ServletContext servletContext){
         checkConnection();
-        RedisHttpSession redisHttpSession = RedisHttpSession.createWithExistSession(token, servletContext, redisConnection);
-        return (HttpSession) new RedisHttpSessionProxy().bind(redisHttpSession);
+        if (redisConnection.exists(RedisHttpSession.SESSION_PREFIX + token)) {
+            RedisHttpSession redisHttpSession = RedisHttpSession.createWithExistSession(token, servletContext, redisConnection);
+            return (HttpSession) new RedisHttpSessionProxy().bind(redisHttpSession);
+        } else {
+            return null;
+        }
     }
 
     public RedisConnection getRedisConnection(){

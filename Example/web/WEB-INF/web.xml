@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <filter>
+        <filter-name>redisHttpSessionFilter</filter-name>
+        <filter-class>com.hansong.session.RedisHttpSessionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>redisHttpSessionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <!--指定Filter负责拦截的URL，指定url-pattern为/*表示拦截所有用户请求。-->
+    </filter-mapping>
+</web-app>

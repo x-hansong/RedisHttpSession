@@ -15,7 +15,7 @@ public class RedisHttpSession implements HttpSession{
 
     public static final int DEFAULT_MAX_INACTIVE_INTERVAL_SECONDS = 1800;
 
-    private static final String SESSION_PREFIX = "session:";
+    public static final String SESSION_PREFIX = "session:";
     private static final String SESSION_ATTR = "sessionAttr:";
     private static final String CREATION_TIME = "creationTime";
     private static final String LAST_ACCESSED_TIME = "lastAccessedTime";
@@ -177,7 +177,7 @@ public class RedisHttpSession implements HttpSession{
      * 更新过期时间
      */
     public void refresh(){
-        redisConnection.expire(key, maxInactiveInterval);
+        redisConnection.expire(key, getMaxInactiveInterval());
     }
 
     public RedisConnection getRedisConnection() {

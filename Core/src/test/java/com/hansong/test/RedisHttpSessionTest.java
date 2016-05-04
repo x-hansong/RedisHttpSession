@@ -11,7 +11,7 @@ import java.util.HashSet;
  * Created by xhans on 2016/4/29.
  */
 public class RedisHttpSessionTest {
-//    @Test
+    @Test
     public void testRedisHttpSession(){
         RedisHttpSessionRepository repository = RedisHttpSessionRepository.getInstance();
         HttpSession redisHttpSession = repository.newSession(null);
@@ -28,12 +28,17 @@ public class RedisHttpSessionTest {
         System.out.println(redisHttpSession.getAttribute("id"));
         System.out.println(redisHttpSession.getAttribute("map"));
 
+        for (String str : redisHttpSession.getValueNames()){
+            System.out.println(str);
+        }
+
         redisHttpSession.invalidate();
+        System.out.println(redisHttpSession.getAttribute("id"));
         System.out.println(redisHttpSession.getAttribute("id"));
 
     }
 
-    @Test
+//    @Test
     public void testMultiSession(){
         RedisHttpSessionRepository repository = RedisHttpSessionRepository.getInstance();
         HashSet<HttpSession> set = new HashSet<>();

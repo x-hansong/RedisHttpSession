@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.nio.file.NoSuchFileException;
 import java.util.List;
 
 /**
@@ -61,18 +62,21 @@ public class RedisConfig {
     private static final String REDIS_CONFIG = "redis.json";
 
     private static String readConfig(){
-        File file = new File(REDIS_CONFIG);
         try {
-            FileInputStream inputStream = new FileInputStream(file);
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            InputStream is =  classLoader.getResourceAsStream(REDIS_CONFIG);
+            if (is == null){
+                throw new NoSuchFileException("Resource file not found. Note that the current directory is the source folder!");
+            }
             StringBuilder sb = new StringBuilder();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
             String line = bufferedReader.readLine();
             while (line != null){
                 sb.append(line);
                 line = bufferedReader.readLine();
             }
             bufferedReader.close();
-            inputStream.close();
+            is.close();
 
             String redisJson = sb.toString();
             logger.debug("Read {}: {}", REDIS_CONFIG, redisJson);
