@@ -174,7 +174,7 @@ public class RedisHttpSession implements HttpSession{
     }
 
     /**
-     * 更新过期时间
+     * update expire time
      */
     public void refresh(){
         redisConnection.expire(key, getMaxInactiveInterval());

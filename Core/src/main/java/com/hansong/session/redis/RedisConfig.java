@@ -1,8 +1,6 @@
 package com.hansong.session.redis;
 
 import com.hansong.session.utils.JsonUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.file.NoSuchFileException;
@@ -13,7 +11,6 @@ import java.util.List;
  */
 public class RedisConfig {
 
-    static Logger logger = LoggerFactory.getLogger(RedisConfig.class);
 
     private static final String CONNECTION_CONFIG = "ConnectionConfig";
     private static final String REDIS_SERVER = "RedisServer";
@@ -54,6 +51,7 @@ public class RedisConfig {
 
     private static String readConfig(){
         try {
+            //read config file from src folder
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
             InputStream is =  classLoader.getResourceAsStream(REDIS_CONFIG);
             if (is == null){
@@ -69,10 +67,7 @@ public class RedisConfig {
             bufferedReader.close();
             is.close();
 
-            String redisJson = sb.toString();
-            logger.debug("Read {}: {}", REDIS_CONFIG, redisJson);
-
-            return redisJson;
+            return sb.toString();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

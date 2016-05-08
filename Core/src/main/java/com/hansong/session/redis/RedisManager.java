@@ -1,7 +1,5 @@
 package com.hansong.session.redis;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -10,7 +8,6 @@ import redis.clients.jedis.JedisPoolConfig;
  */
 public class RedisManager {
 
-    static Logger logger = LoggerFactory.getLogger(RedisManager.class);
 
     private JedisPool jedisPool;
 
@@ -24,6 +21,9 @@ public class RedisManager {
 
     private RedisManager() {
         RedisConfig redisConfig = RedisConfig.create();
+        if (redisConfig == null){
+            throw new IllegalStateException("Read redis.json failed");
+        }
         JedisPoolConfig jedisPoolConfig = getConfig(redisConfig);
         RedisConfig.RedisServer redisServer = redisConfig.getRedisServers().get(0);
         //if the redis have password
