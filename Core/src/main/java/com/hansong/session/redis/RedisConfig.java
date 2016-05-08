@@ -15,7 +15,6 @@ public class RedisConfig {
 
     static Logger logger = LoggerFactory.getLogger(RedisConfig.class);
 
-    private static final String IS_CLUSTER = "isCluster";
     private static final String CONNECTION_CONFIG = "ConnectionConfig";
     private static final String REDIS_SERVER = "RedisServer";
 
@@ -23,7 +22,6 @@ public class RedisConfig {
 
     private List<RedisServer> redisServers;
 
-    private boolean isCluster;
 
     public ConnectionConfig getConnectionConfig() {
         return connectionConfig;
@@ -41,13 +39,6 @@ public class RedisConfig {
         this.redisServers = redisServers;
     }
 
-    public boolean isCluster() {
-        return isCluster;
-    }
-
-    public void setCluster(boolean cluster) {
-        isCluster = cluster;
-    }
 
     public static RedisConfig create(){
         String redisJson = readConfig();

@@ -1,5 +1,4 @@
 {
-  "cluster":"false",
 
   "connectionConfig": {
     "maxTotal": "10",
@@ -14,6 +13,6 @@
       "port":"63679",
       "password":"a12shg"
     }
-  ]
+ ]
 
 }

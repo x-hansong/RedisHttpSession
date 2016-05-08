@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 public class RedisHttpSessionRepository {
     private RedisManager redisManager;
 
-    //all session use one redis connection
+    //all sessions use one redis connection
     private RedisConnection redisConnection;
 
 
@@ -47,7 +47,7 @@ public class RedisHttpSessionRepository {
             RedisHttpSession redisHttpSession = RedisHttpSession.createWithExistSession(token, servletContext, redisConnection);
             return (HttpSession) new RedisHttpSessionProxy().bind(redisHttpSession);
         } else {
-            return null;
+            throw new IllegalStateException("The HttpSession has already be invalidated.");
         }
     }
 

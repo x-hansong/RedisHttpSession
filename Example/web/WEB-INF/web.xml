@@ -10,6 +10,5 @@
     <filter-mapping>
         <filter-name>redisHttpSessionFilter</filter-name>
         <url-pattern>/*</url-pattern>
-        <!--指定Filter负责拦截的URL，指定url-pattern为/*表示拦截所有用户请求。-->
     </filter-mapping>
 </web-app>

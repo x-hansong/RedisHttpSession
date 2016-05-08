@@ -14,7 +14,6 @@ public class RedisConfigTest {
     public void testRedisConfig(){
         logger.debug(System.getProperty("user.dir"));
         RedisConfig redisConfig = RedisConfig.create();
-        logger.debug(String.valueOf(redisConfig.isCluster()));
         logger.debug(String.valueOf(redisConfig.getRedisServers()));
         logger.debug(String.valueOf(redisConfig.getConnectionConfig()));
     }

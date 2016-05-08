@@ -29,7 +29,7 @@ public class RedisHttpSessionProxy implements InvocationHandler {
             session.setRedisConnection(repository.getRedisConnection());
         }
         //For every methods of interface, check it valid or not
-        if (!session.isInvalidated()){
+        if (session.isInvalidated()){
             throw new IllegalStateException("The HttpSession has already be invalidated.");
         } else {
             Object result =  method.invoke(originalObj, args);

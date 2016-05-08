@@ -1,3 +1,4 @@
 rootProject.name = 'RedisHttpSession'
 include 'Core'
+include 'Spring-Example'
 

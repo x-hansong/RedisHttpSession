@@ -201,7 +201,7 @@ public class RedisHttpSession implements HttpSession{
     }
 
     public boolean isInvalidated() {
-        return redisConnection.exists(key);
+        return !redisConnection.exists(key);
     }
 
 }
