@@ -1,18 +1,15 @@
 {
-
   "connectionConfig": {
     "maxTotal": "10",
     "maxIdle": "10",
     "maxWait": "10000",
     "timeout": "10000"
   },
-
   "redisServers":[
     {
-      "ip":"112.74.215.22",
-      "port":"63679",
-      "password":"a12shg"
+      "ip":"127.0.0.1",
+      "port":"3679",
+      "password":"if no password, remove this property"
     }
- ]
-
+  ]
 }

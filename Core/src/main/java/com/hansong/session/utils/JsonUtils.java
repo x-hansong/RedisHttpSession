@@ -45,14 +45,7 @@ public class JsonUtils {
         return null;
     }
 
-    /**
-     * 将json string反序列化成对象
-     *
-     * @param json
-     * @param valueType
-     * @return
-     */
-    public static <T> T decode(String json, Class<T> valueType) {
+   public static <T> T decode(String json, Class<T> valueType) {
         try {
             return objectMapper.readValue(json, valueType);
         } catch (JsonParseException e) {
@@ -65,14 +58,7 @@ public class JsonUtils {
         return null;
     }
 
-    /**
-     * 将json array反序列化为对象
-     *
-     * @param json
-     * @param TypeReference<T>
-     * @return
-     */
-    @SuppressWarnings("unchecked")
+   @SuppressWarnings("unchecked")
     public static <T> T decode(String json, TypeReference<T> typeReference) {
         try {
             return (T) objectMapper.readValue(json, typeReference);

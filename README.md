@@ -7,11 +7,43 @@ RedisHttpSession provides an way to transparently store http session in redis, w
 
 # Quick Start
 
- Use `RedisHttpSessionFilter` or a subclass of it as a Filter. 
+## maven
+    <dependency>
+      <groupId>com.github.x-hansong</groupId>
+      <artifactId>redis-http-session</artifactId>
+      <version>1.0</version>
+    </dependency>
+    
+## gradle
+    dependencies {
+        compile "com.github.x-hansong:redis-http-session:1.0"
+    }
+
+## Usage
+
+Configures redis in `redis.json`, and put it to the `src` folder or `resources` folder.(see example)
+
+    {
+      "connectionConfig": {
+        "maxTotal": "10",
+        "maxIdle": "10",
+        "maxWait": "10000",
+        "timeout": "10000"
+      },
+      "redisServers":[
+        {
+          "ip":"127.0.0.1",
+          "port":"3679",
+          "password":"if no password, remove this property"
+        }
+     ]
+    }
+
+Use `RedisHttpSessionFilter` or a subclass of it as a Filter. 
  
- For example:
+For example:
  
- - With `web.xml`
+- With `web.xml`
  
         <filter>
             <filter-name>redisHttpSessionFilter</filter-name>
@@ -22,11 +54,14 @@ RedisHttpSession provides an way to transparently store http session in redis, w
             <url-pattern>/*</url-pattern>
         </filter-mapping>
         
-- With Spring
+- With Spring-boot
 
         @Component
         public class MySessionFilter extends RedisHttpSessionFilter{}
         
+- With Other
+    make sure the `RedisHttpSessionFilter` or a subclass of it to be a Filter for each request.
+    
 After that, for each request/response, their header will have a field -- `x-auth-token`, which is the session id.
 
 And we can use the `HttpSession` as we always do, but the session is now in redis. If you check the redis, you will see something following.
