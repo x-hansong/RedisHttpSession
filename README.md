@@ -1,5 +1,5 @@
 # RedisHttpSession
-RedisHttpSession provides an way to transparently store http session in redis, which allows multi-clients to share the session.
+RedisHttpSession provides an way to transparently store http session in redis, which allows multi-clients to share the sessions.
 
 # Features
 - **RESTful APIs** - RedisHttpSession allows providing session ids in headers to work with RESTful APIs.
@@ -60,6 +60,7 @@ For example:
         public class MySessionFilter extends RedisHttpSessionFilter{}
         
 - With Other
+
     make sure the `RedisHttpSessionFilter` or a subclass of it to be a Filter for each request.
     
 After that, for each request/response, their header will have a field -- `x-auth-token`, which is the session id.
