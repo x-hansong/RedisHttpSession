@@ -10,6 +10,7 @@ import java.lang.reflect.Proxy;
  * Created by xhans on 2016/4/29.
  */
 public class RedisHttpSessionProxy implements InvocationHandler {
+
     private Object originalObj;
 
     private RedisHttpSessionRepository repository = RedisHttpSessionRepository.getInstance();

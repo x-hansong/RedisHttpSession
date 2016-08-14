@@ -8,7 +8,6 @@ import redis.clients.jedis.JedisPoolConfig;
  */
 public class RedisManager {
 
-
     private JedisPool jedisPool;
 
     private static class RedisManagerHolder {

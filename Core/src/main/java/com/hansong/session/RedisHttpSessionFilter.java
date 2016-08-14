@@ -9,7 +9,7 @@ import java.io.IOException;
  */
 public class RedisHttpSessionFilter implements Filter {
 
-    public static final String TOKEN_HEADER_NAME = "x-auth-token";
+    private static final String TOKEN_HEADER_NAME = "x-auth-token";
 
     private RedisHttpSessionRepository repository;
 

@@ -11,10 +11,6 @@ import java.util.List;
  */
 public class RedisConfig {
 
-
-    private static final String CONNECTION_CONFIG = "ConnectionConfig";
-    private static final String REDIS_SERVER = "RedisServer";
-
     private ConnectionConfig connectionConfig;
 
     private List<RedisServer> redisServers;
@@ -40,8 +36,7 @@ public class RedisConfig {
     public static RedisConfig create(){
         String redisJson = readConfig();
         if (redisJson != null){
-            RedisConfig redisConfig = JsonUtils.decode(redisJson, RedisConfig.class);
-            return redisConfig;
+            return JsonUtils.decode(redisJson, RedisConfig.class);
         } else {
             throw new InternalError("Read redis config failed");
         }
@@ -68,8 +63,6 @@ public class RedisConfig {
             is.close();
 
             return sb.toString();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

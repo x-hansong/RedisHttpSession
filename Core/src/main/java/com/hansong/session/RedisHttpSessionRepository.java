@@ -15,6 +15,7 @@ public class RedisHttpSessionRepository {
     //all sessions use one redis connection
     private RedisConnection redisConnection;
 
+    private final static RedisHttpSessionRepository instance = new RedisHttpSessionRepository();
 
     private RedisHttpSessionRepository() {
         redisManager = RedisManager.getInstance();
@@ -22,9 +23,7 @@ public class RedisHttpSessionRepository {
     }
 
 
-    private final static RedisHttpSessionRepository instance = new RedisHttpSessionRepository();
-
-    public static RedisHttpSessionRepository getInstance(){
+    public static RedisHttpSessionRepository getInstance() {
         return instance;
     }
 
@@ -37,11 +36,12 @@ public class RedisHttpSessionRepository {
 
     /**
      * get session according to token
+     *
      * @param token
      * @param servletContext
      * @return session associate to token or null if the token is invalid
      */
-    public HttpSession getSession(String token, ServletContext servletContext){
+    public HttpSession getSession(String token, ServletContext servletContext) {
         checkConnection();
         if (redisConnection.exists(RedisHttpSession.SESSION_PREFIX + token)) {
             RedisHttpSession redisHttpSession = RedisHttpSession.createWithExistSession(token, servletContext, redisConnection);
@@ -51,13 +51,13 @@ public class RedisHttpSessionRepository {
         }
     }
 
-    public RedisConnection getRedisConnection(){
+    public RedisConnection getRedisConnection() {
         checkConnection();
         return redisConnection;
     }
 
-    private void checkConnection(){
-        if (!redisConnection.isConnected()){
+    private void checkConnection() {
+        if (!redisConnection.isConnected()) {
             redisConnection.close();
             redisConnection = redisManager.getConnection();
         }

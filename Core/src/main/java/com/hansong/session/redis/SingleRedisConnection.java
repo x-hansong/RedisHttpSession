@@ -19,7 +19,7 @@ public class SingleRedisConnection implements RedisConnection {
 
     @Override
     public void close() {
-
+        jedis.close();
     }
 
     @Override
